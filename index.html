@@ -3,39 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TaskMaster Pro</title>
-    <!-- Application styles -->
+    <title>Productivity Suite</title>
+    <!-- Shared application styles -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Application script -->
+    <!-- Chart.js for visualisations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Shared application logic -->
     <script defer src="app.js"></script>
   </head>
   <body>
-    <!-- Header -->
+    <!-- Header with application title and navigation -->
     <header>
-      <h1>TaskMaster Pro</h1>
-      <p>Organize your tasks and stay productive with ease.</p>
+      <h1>Productivity Suite</h1>
+      <p>Manage your tasks and finances in one place.</p>
+      <nav class="tabs">
+        <button id="tasksTab" class="tab active" type="button">Tasks</button>
+        <button id="financeTab" class="tab" type="button">Finance</button>
+      </nav>
     </header>
 
-    <!-- Main content -->
+    <!-- Main container holds both applications, toggled by tabs -->
     <main>
-      <!-- Task input form -->
-      <form id="task-form">
-        <input
-          type="text"
-          id="task-input"
-          placeholder="Enter a new task"
-          required
-        />
-        <button type="submit">Add Task</button>
-      </form>
+      <!-- Task Manager Section -->
+      <section id="tasksSection">
+        <form id="task-form" class="task-form">
+          <input
+            type="text"
+            id="task-input"
+            placeholder="Enter a new task"
+            required
+          />
+          <button type="submit">Add Task</button>
+        </form>
+        <div id="tasks-container" class="list-container"></div>
+      </section>
 
-      <!-- Task list container -->
-      <div id="tasks-container"></div>
+      <!-- Finance Tracker Section (hidden by default) -->
+      <section id="financeSection" style="display: none;">
+        <div class="finance-form">
+          <input
+            type="text"
+            id="description"
+            placeholder="Description"
+            aria-label="Transaction description"
+            required
+          />
+          <input
+            type="number"
+            id="amount"
+            placeholder="Amount (USD)"
+            aria-label="Transaction amount"
+            required
+            min="0.01"
+            step="0.01"
+          />
+          <select id="category" aria-label="Transaction category">
+            <option value="Food">Food</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Other">Other</option>
+          </select>
+          <button id="addTransactionButton" type="button">Add Transaction</button>
+        </div>
+        <div id="transactions-container" class="list-container"></div>
+        <div class="chart-wrapper">
+          <canvas id="financeChart" aria-label="Spending by category chart"></canvas>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
     <footer>
-      © 2025 TaskMaster Pro · <a href="#">Upgrade to Pro</a>
+      © 2025 Productivity Suite · <a href="#">Upgrade to Pro</a>
     </footer>
   </body>
 </html>
